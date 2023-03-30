@@ -1,0 +1,48 @@
+CREATE TABLE menu(
+	m_no	number	NOT NULL,	
+	m_group	varchar2(10),
+	m_name	varchar(30),
+	m_price	number,
+	PRIMARY KEY(m_no)
+);
+CREATE TABLE "user"(
+	u_no		number	NOT NULL,	
+	u_id		varchar2(20),
+	u_pw		varchar2(4),
+	u_name	varchar2(30),
+	u_bd		varchar2(14),
+	u_point	number,
+	u_grade	varchar(10),
+	PRIMARY KEY(u_no)
+);
+CREATE TABLE orderlist(
+	o_no		number	NOT NULL,
+	o_date	date,
+	u_no		number,
+	m_no		number,
+	o_group	varchar2(30),
+	o_size	varchar2(30),
+	o_price	number,
+	o_count	number,
+	o_amount	number,
+	FOREIGN KEY (u_no) REFERENCES "user" (u_no),
+	FOREIGN KEY (m_no) REFERENCES menu (m_no)
+);
+DROP TABLE orderlist;
+
+CREATE TABLE shopping(
+	s_no		number	NOT NULL,
+	m_no		number,
+	s_price	number,
+	s_count	number,
+	s_size	varchar2(30),
+	s_amount	number,
+	FOREIGN KEY (m_no) REFERENCES menu (m_no)
+);
+
+insert all
+into menu values(1,'음료', '바닐라라떼', 5000)
+into menu values(2,'푸드', '샌드위치', 7000)
+into menu values(3,'상품', '컵', 17000)
+select *
+from dual;
