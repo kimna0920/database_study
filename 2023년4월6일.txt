@@ -1,0 +1,131 @@
+CREATE TABLE "menu"(
+	m_no	number	NOT NULL,	
+	m_group	varchar2(10),
+	m_name	varchar(30),
+	m_price	number,
+	PRIMARY KEY(m_no)
+);
+
+insert all
+into menu values(7,'음료','아메리카노',4000) 
+into menu values(8,'음료','라떼',4500) 
+into menu values(9,'음료','티',5000)
+into menu values(10,'푸드','마카롱', 3000) 
+into menu values(11,'음료','카페모카',5500) 
+into menu values(12,'음료','돌체라떼', 5900) 
+into menu values(13,'음료', '애플망고', 4500) 
+into menu values(14,'푸드','샐러드', 6000) 
+into menu values(15, '푸드', '베이글', 30000) 
+into menu values(16,'음료','레몬에이드', 6500) 
+into menu values(17,'음료','아메리카노', 4000) 
+into menu values(18,'상품','보온병', 45000) 
+into menu values(19, '상품', '쇼퍼백', 11000) 
+into menu values(20, '상품','콜드컵', 13000) 
+select * from dual;
+
+INSERT INTO "menu"
+VALUES(1,'음료', '바닐라라떼', 5000);
+INSERT INTO "menu"
+VALUES(2,'푸드', '샌드위치', 7000);
+INSERT INTO "menu"
+VALUES(3,'상품', '컵', 17000);
+INSERT INTO "menu"
+VALUES(4, '음료', '콜드브루', 6000);
+INSERT INTO "menu"
+VALUES(5, '상품','텀블러', 30000);
+INSERT INTO "menu"
+VALUES(6, '푸드','케익', 8000);
+INSERT INTO "menu"
+VALUES(7,'음료','아메리카노',4000);
+INSERT INTO "menu"
+VALUES(8,'음료','라떼',4500);
+INSERT INTO "menu"
+VALUES(9,'음료','티',5000);
+INSERT INTO "menu"
+VALUES(10,'푸드','마카롱', 3000);
+INSERT INTO "menu"
+VALUES(11,'음료','카페모카',5500);
+INSERT INTO "menu"
+VALUES(12,'음료','돌체라떼', 5900);
+INSERT INTO "menu"
+VALUES(13,'음료', '애플망고', 4500);
+INSERT INTO "menu"
+VALUES(14,'푸드','샐러드', 6000);
+INSERT INTO "menu"
+VALUES(15, '푸드', '베이글', 30000);
+INSERT INTO "menu"
+VALUES(16,'음료','레몬에이드', 6500);
+INSERT INTO "menu"
+VALUES(17,'음료','아메리카노', 4000);
+INSERT INTO "menu"
+VALUES(18,'상품','보온병', 45000);
+INSERT INTO "menu"
+VALUES(19, '상품', '쇼퍼백', 11000);
+INSERT INTO "menu"
+VALUES(20, '상품','콜드컵', 13000);
+
+INSERT INTO "menu"
+insert into "menu"(m_no,m_group,m_name,m_price)
+select 4, '음료', '콜드브루', 6000
+from dual union all
+select 5, '상품','텀블러', 30000
+from dual union all
+select 6, '푸드','케익', 8000
+from dual;
+
+// 메뉴의 총합
+SELECT SUM(m_price) FROM "menu";
+
+// 행의 갯수
+SELECT Count(m_price) FROM "menu";
+
+//가장 비싼&싼 메뉴
+SELECT Max(m_price) FROM "menu";
+SELECT Min(m_price) FROM "menu";
+
+// 메뉴이름 검색
+select "menu",m_name
+from m_price
+where m_name LIKE '%라떼%';
+
+//메뉴 종류의 갯수(grop by)
+select count(*), m_group
+from menu
+group by m_group;
+
+//그룹별 메뉴의 개수가 10개 이상인 메뉴를 검색하시오.
+select count(*), m_group
+from menu
+group by m_group
+having count(*)>=5;
+
+//조인
+CREATE TABLE "orderlist"(
+	o_no		number	NOT NULL,
+	o_date	date,
+	u_no		number,
+	m_no		number,
+	o_group	varchar2(30),
+	o_size	varchar2(30),
+	o_price	number,
+	o_count	number,
+	o_amount	number,
+	FOREIGN KEY (u_no) REFERENCES "user" (u_no),
+	FOREIGN KEY (m_no) REFERENCES menu (m_no)
+);
+CREATE TABLE "users"(
+	u_no		number	NOT NULL,	
+	u_id		varchar2(20),
+	u_pw		varchar2(4),
+	u_name	varchar2(30),
+	u_bd		varchar2(14),
+	u_point	number,
+	u_grade	varchar(10),
+	PRIMARY KEY(u_no)
+);
+INSERT INTO "users"
+VALUES(1, 'chun','1234', '춘식', '머지',11, 'A');
+
+INSERT INTO "orderlist"
+VALUES(1, '2023-04-06', )
+
