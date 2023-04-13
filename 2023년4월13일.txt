@@ -1,0 +1,43 @@
+CREATE TABLE emp(
+	emp_no number NOT NULL,
+	emp_name varchar(30),
+	dapt_no number,
+	PRIMARY KEY(emp_no)
+);
+DROP TABLE emp;
+CREATE TABLE dapt(
+	dapt_no number NOT NULL,
+	dapt_name varchar2(30),
+	PRIMARY KEY(dapt_no)
+);
+
+INSERT INTO emp
+VALUES(201,'차수민',20);
+INSERT INTO emp
+VALUES(202,'장종선',20);
+INSERT INTO emp
+VALUES(203,'김상화',20);
+INSERT INTO emp
+VALUES(204,'강은수',20);
+INSERT INTO emp
+VALUES(500,'최병준','');
+INSERT INTO emp
+VALUES(301,'박제현',30);
+INSERT INTO emp
+VALUES(302,'김민하',30);
+INSERT INTO emp
+VALUES(501,'김기태','');
+
+INSERT INTO dapt
+VALUES(10, '1학년부');
+INSERT INTO dapt
+VALUES(20, '2학년부');
+INSERT INTO dapt
+VALUES(30, '3학년부');
+
+SELECT * FROM emp INNER JOIN dapt ON emp.dep_no = dapt.dapt_no;
+
+SELECT emp.emp_no, emp.emp_name, dapt.dapt_name
+FROM emp
+LEFT OUTER JOIN dapt
+ON emp.dapt_no = dapt.dapt_no;
